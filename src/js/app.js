@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Helpers from 'helper';
 
-import 'bootstrap-loader';
-import '../css/styles.scss';
+import CarTool from 'components/CarTool';
 
-class HelloWorld extends React.Component {
-
-    render() {
-        return <h1>Hello World!</h1>;
-    }
-}
-
-ReactDOM.render( <HelloWorld /> , document.querySelector('main'));
+fetch('http://localhost:5000/cars')
+  .then(res=> res.json())
+  .then(cars => {
+    ReactDOM.render(<CarTool myCars={cars} headers={Helpers.headers} />, document.querySelector('main'));
+  });
